@@ -3,10 +3,6 @@ const { generatePassword } = require('../controllers/passwordController');
 
 const router = express.Router();
 
-app.get('/', (req, res) => {
-    res.status(200).send('Backend API is running.');
-  });
-  
 
 app.post('/generate-password', (req, res) => {
     const { length, options } = req.body;
