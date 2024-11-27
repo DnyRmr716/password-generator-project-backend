@@ -4,7 +4,7 @@ const { generatePassword } = require('../controllers/passwordController');
 const router = express.Router();
 
 
-app.post('/generate-password', (req, res) => {
+router.post('/generate-password', (req, res) => {
     const { length, options } = req.body;
   
     // Enforce maximum password length
