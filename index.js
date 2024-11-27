@@ -1,12 +1,15 @@
-require('dotenv').config();
-
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
 const passwordRoutes = require('./routes/passwordRoutes');
 
-
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+    origin: 'https://pa55g3n.netlify.app',
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -15,10 +18,8 @@ app.get('/', (req, res) => {
 
 app.use('/', passwordRoutes);
 
-
 const PORT = process.env.PORT || 3000;
 
-
-app.listen(PORT, ()=> {
-    console.log(`Server Is running on http://localhost:${PORT}`)
-})
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
