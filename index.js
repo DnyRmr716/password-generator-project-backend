@@ -4,9 +4,19 @@ const passwordRoutes = require('./routes/passwordRoutes');
 
 const app = express();
 
-const corsOptions = {
-    origin: 'https://pa55g3n.netlify.app',
-    optionsSuccessStatus: 200
+const allowedOrigins = [
+    'https://pa55g3n.netlify.app/',
+];
+  
+  const corsOptions = {
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
